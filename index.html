@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slider Básico</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .slider {
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider">
+    <div class="slides">
+      <img src="https://via.placeholder.com/600x300/ff7f7f/333333?text=Slide+1" alt="Slide 1">
+      <img src="https://via.placeholder.com/600x300/7f7fff/333333?text=Slide+2" alt="Slide 2">
+      <img src="https://via.placeholder.com/600x300/7fff7f/333333?text=Slide+3" alt="Slide 3">
+    </div>
+    <button class="prev" onclick="moveSlides(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlides(1)">&#10095;</button>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+
+    function moveSlides(direction) {
+      const slides = document.querySelector('.slides');
+      const totalSlides = slides.children.length;
+      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+  </script>
+
+</body>
+</html>
